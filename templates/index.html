@@ -1,31 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>Todo App</title>
-    </head>
-    <body>
-        <div>
-            {% for entry in entries %}
-            <div>
-                <div>
-                    id: {{ entry.id }}, text: {{ entry.text }}
-                </div>
-                <from action="/hello", method="get">
-                    <!-- <input name="aaa" value="{{ entry.text }}"> -->
-                    <button type="submit">delete</button>
-                </from>
-            </div>
-            {% endfor %}
-        </div>
-        <from action="/hello", method="get">
-            <input name="text">
-            <input type="submit">
-        </from>
-        <form action="/hello", method="get">
-            
-                <input name="text">
-                <input type="submit">
+  <head>
+    <meta charset="utf-8" />
+    <title>Todo App</title>
+  </head>
+  <body>
+    <div>
+      {% for entry in entries %}
+      <div>
+        <div>id: {{ entry.id }}, text: {{ entry.text }}</div>
+        <form action="/delete" method="post">
+          <input type="hidden" name="id" value="{{ entry.id }}" />
+          <button type="submit">delete</button>
         </form>
-    </body>
+      </div>
+      {% endfor %}
+    </div>
+    <div>
+      <form action="/add" method="post">
+        <input name="text" />
+        <input type="submit" />
+      </form>
+    </div>
+  </body>
 </html>
